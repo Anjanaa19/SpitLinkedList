@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    struct node *next;
+    int data;
+}*start=NULL;
+int insert(struct node *head,int element){
+     struct node *newnode=malloc( sizeof(struct node) );
+     newnode->data=element;
+     newnode->next=NULL;
+     if(head==NULL){
+         head=newnode;
+     }
+     else{
+         newnode->next=head;
+         head=newnode;
+     }
+     return head;
+ }
+ 
+ 
+ struct node  splitList(struct node *head){
+     struct node *oddList, *evenList,*temp,*tempNext,*oddListHead,*evenListHead,*temp1,*temp2;
+     if(head==NULL){
+         return NULL;
+     }
+     temp=head;
+     oddList=head;
+     evenList=head->next;
+     oddListHead=oddList;
+     evenListHead=evenList;
+     int position=0;
+     while(temp->next!=NULL){
+         tempNext=temp->next;
+         if(position==0){
+             oddList->next=tempNext->next;
+             oddList=oddList->next;
+             position=1;
+         }
+         else if(position==1){
+             evenList->next=tempNext->next;
+             evenList=evenList->next;
+             position=0;
+         }
+         temp=tempNext;
+     }
+       temp1=evenListHead;
+       temp2=oddListHead;
+     while(temp1->next!=NULL){
+         printf("%d",temp1->data);
+         temp1=temp1->next;
+     }
+      while(temp2->next!=NULL){
+         printf("%d",temp2->data);
+         temp2=temp2->next;
+     }
+   }
+int main(){
+    struct node *head;
+    head=start;
+    char choice;
+    int element;
+    while(1){
+        printf("Do you want to insert value(y/n):");
+        scanf("%c",&choice);
+        if(choice=='y'){
+            scanf("%d",&element);
+            head=insert(head,element);
+        }
+        else if(choice=='n'){
+            splitList(head);
+        }
+        
+    }
+    
+    return 0;
+}
+
