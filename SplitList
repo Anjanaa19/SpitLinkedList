@@ -19,11 +19,12 @@ int insert(struct node *head,int element){
  }
  
  
- struct node  splitList(struct node *head){
+ void splitList(struct node *head){
      struct node *oddList, *evenList,*temp,*tempNext,*oddListHead,*evenListHead,*temp1,*temp2;
      if(head==NULL){
          return NULL;
      }
+   
      temp=head;
      oddList=head;
      evenList=head->next;
@@ -46,32 +47,35 @@ int insert(struct node *head,int element){
      }
        temp1=evenListHead;
        temp2=oddListHead;
-     while(temp1->next!=NULL){
-         printf("%d",temp1->data);
+       printf("\nList 1:\n");
+     while(temp1!=NULL){
+         printf("%d ",temp1->data);
          temp1=temp1->next;
      }
-      while(temp2->next!=NULL){
-         printf("%d",temp2->data);
+      printf("\nList 1:\n");
+      while(temp2!=NULL){
+         printf("%d ",temp2->data);
          temp2=temp2->next;
      }
    }
 int main(){
     struct node *head;
     head=start;
-    char choice;
+    int choice;
     int element;
     while(1){
-        printf("Do you want to insert value(y/n):");
-        scanf("%c",&choice);
-        if(choice=='y'){
+        printf("Do you want to insert value(1/0):");
+        scanf("%d",&choice);
+        if(choice==1){
             scanf("%d",&element);
             head=insert(head,element);
         }
-        else if(choice=='n'){
-            splitList(head);
+        else if(choice==0){
+           break;
         }
         
     }
+     splitList(head);
     
     return 0;
 }
