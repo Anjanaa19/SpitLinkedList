@@ -52,7 +52,7 @@ struct node{
          printf("%s ",temp2->data);
          temp2=temp2->next;
        }
-      if(temp2!=NULL){
+      if(temp1!=NULL){
       printf("\nList 2:\n");
       while(temp1!=NULL){
          printf("%s ",temp1->data);
@@ -80,8 +80,8 @@ int main(){
     if(emptyList==1){
       splitList(head);
     }
-    else
+    else{
       printf("List Empty");
-    
+    }
     return 0;
 }
