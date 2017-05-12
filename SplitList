@@ -5,7 +5,7 @@ struct node{
     struct node *next;
      char data[50];
 };
-int insert(struct node *head,char element[]){
+ struct node* insert(struct node *head,char element[]){
      struct node *newnode=malloc( sizeof(struct node) );
      strcpy( newnode->data, element);
      newnode->next=NULL;
@@ -19,8 +19,7 @@ int insert(struct node *head,char element[]){
      return head;
  }
  
- int splitList(struct node *head){
-     printf("Hello");
+  struct node* splitList(struct node *head){
      struct node *oddList, *evenList,*temp,*tempNext,*oddListHead,*evenListHead,*temp1,*temp2;
      if(head==NULL){
          return NULL;
@@ -49,14 +48,16 @@ int insert(struct node *head,char element[]){
        temp1=evenListHead;
        temp2=oddListHead;
        printf("\nList 1:\n");
-     while(temp1!=NULL){
-         printf("%s ",temp1->data);
-         temp1=temp1->next;
-     }
-      printf("\nList 2:\n");
-      while(temp2!=NULL){
+       while(temp2!=NULL){
          printf("%s ",temp2->data);
          temp2=temp2->next;
+       }
+      if(temp2!=NULL){
+      printf("\nList 2:\n");
+      while(temp1!=NULL){
+         printf("%s ",temp1->data);
+         temp1=temp1->next;
+        }
      }
    }
 int main(){
@@ -72,7 +73,7 @@ int main(){
             head=insert(head,element);
         }
         else if(choice==0){
-           break;
+             break;
         }
         
     }
