@@ -1,12 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 struct node{
     struct node *next;
-    int data;
-}*start=NULL;
-int insert(struct node *head,int element){
+     char data[50];
+};
+int insert(struct node *head,char element[]){
      struct node *newnode=malloc( sizeof(struct node) );
-     newnode->data=element;
+     strcpy( newnode->data, element);
      newnode->next=NULL;
      if(head==NULL){
          head=newnode;
@@ -18,13 +19,13 @@ int insert(struct node *head,int element){
      return head;
  }
  
- 
- void splitList(struct node *head){
+ int splitList(struct node *head){
+     printf("Hello");
      struct node *oddList, *evenList,*temp,*tempNext,*oddListHead,*evenListHead,*temp1,*temp2;
      if(head==NULL){
          return NULL;
      }
-   
+     
      temp=head;
      oddList=head;
      evenList=head->next;
@@ -49,25 +50,25 @@ int insert(struct node *head,int element){
        temp2=oddListHead;
        printf("\nList 1:\n");
      while(temp1!=NULL){
-         printf("%d ",temp1->data);
+         printf("%s ",temp1->data);
          temp1=temp1->next;
      }
-      printf("\nList 1:\n");
+      printf("\nList 2:\n");
       while(temp2!=NULL){
-         printf("%d ",temp2->data);
+         printf("%s ",temp2->data);
          temp2=temp2->next;
      }
    }
 int main(){
-    struct node *head;
-    head=start;
-    int choice;
-    int element;
+    struct node *head=NULL;
+    int choice,emptyList=0;
+    char element[50];
     while(1){
         printf("Do you want to insert value(1/0):");
         scanf("%d",&choice);
         if(choice==1){
-            scanf("%d",&element);
+            emptyList=1;
+            scanf("%s", element);
             head=insert(head,element);
         }
         else if(choice==0){
@@ -75,8 +76,11 @@ int main(){
         }
         
     }
-     splitList(head);
+    if(emptyList==1){
+      splitList(head);
+    }
+    else
+      printf("List Empty");
     
     return 0;
 }
-
