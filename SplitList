@@ -65,7 +65,7 @@ int main(){
     int choice,emptyList=0;
     char element[50];
     while(1){
-        printf("Do you want to insert value(1/0):");
+        printf("Press 1 to insert and 0 to split(1/0):");
         scanf("%d",&choice);
         if(choice==1){
             emptyList=1;
